@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CheckBox from "expo-checkbox";
+import { LinearGradient } from "expo-linear-gradient";
 import { useState, useContext, useCallback, useEffect } from "react";
 
 export default function Login({ navigation }) {
@@ -25,12 +26,12 @@ export default function Login({ navigation }) {
           <Text style={styles.HeaderText}>WELCOME BACK TO WORDSMITH</Text>
           <View style={styles.form}>
             <View>
-              <Text>Email Address</Text>
-              <TextInput style={styles.input} />
+              <Text style={{ paddingVertical: 2 }}>Email Address</Text>
+              <TextInput inputMode="email" style={styles.input} />
             </View>
             <View>
-              <Text>Password</Text>
-              <TextInput style={styles.input} />
+              <Text style={{ paddingVertical: 2 }}>Password</Text>
+              <TextInput style={styles.input} secureTextEntry={true} />
             </View>
             <View style={styles.forgotcontainer}>
               <View style={{ flexDirection: "row", gap: 10 }}>
@@ -38,7 +39,7 @@ export default function Login({ navigation }) {
                   value={isChecked}
                   onValueChange={setChecked}
                   style={styles.checkbox}
-                  color={isChecked ? "#4630eb" : null}
+                  color={isChecked ? "#411465" : null}
                 />
                 <Text>Remember Me</Text>
               </View>
@@ -47,20 +48,20 @@ export default function Login({ navigation }) {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.buttoncontainer}>
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            colors={["#806298", "#411465", "#806298"]}
+            style={styles.buttoncontainer}
+          >
             <TouchableOpacity style={styles.button}>
-              {/* <Pressable style={styles.button}>
-                <Text style={{color:"#fff"}}>Login</Text>
-              </Pressable> */}
-              {/* {/* <View style={styles.button}> */}
               <Button
                 title="Login"
                 color="#fff"
                 onPress={() => navigation.navigate("Home")}
               />
-              {/* </View> */}
             </TouchableOpacity>
-          </View>
+          </LinearGradient>
           <View style={styles.Signupcontainer}>
             <Text> Or Continue With</Text>
             <TouchableOpacity>
@@ -118,43 +119,47 @@ const styles = StyleSheet.create({
   HeaderText: {
     color: "#411465",
     textAlign: "center",
-    fontFamily: "Inter",
-    fontSize: 20,
+    // fontFamily: "Inter",
+    fontSize: 21,
     fontWeight: 600,
     letterSpacing: -0.025,
+    paddingVertical: 3,
   },
   logo: {
-    marginVertical: 30,
+    marginVertical: 10,
+    width: 120,
+    height: 120,
+    resizeMode: "contain",
   },
   buttoncontainer: {
     width: "90%",
-    paddingTop: 18,
+    borderRadius: 8,
+    marginBottom: 18,
+    marginTop: 45,
+    fontSize: 6,
   },
   button: {
     display: "flex",
-    backgroundColor: "#411465",
+    // backgroundColor: "#411465",
     // background: radial-gradient("387.30%" "66.49%" at "42.68%" "-0.00%," "#411465" "0%", "#806298" "100%"),
     textAlign: "center",
-    color: "#fff",
-    // width: 300,
     borderRadius: 8,
-    paddingVertical: 6,
+    paddingVertical: 7,
     fontSize: 6,
-    marginVertical: 18,
     paddingHorizontal: 30,
   },
   form: {
     flexDirection: "column",
     // alignItems: "center",
     width: "90%",
-    paddingVertical: 25,
-    gap: 18,
+    paddingVertical: 20,
+    gap: 15,
     justifyContent: "space-between",
   },
   forgotcontainer: {
     flexDirection: "row",
     gap: 10,
-    paddingVertical: 5,
+    paddingBottom: 2,
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -176,52 +181,6 @@ const styles = StyleSheet.create({
   whiteText: {
     alignSelf: "center",
     color: "#fff",
-  },
-  eachDayContainer: {
-    flexDirection: "column",
-    alignItems: "center",
-    border: "none",
-    padding: 5,
-    justifyContent: "center",
-  },
-  daysContainer: {
-    backgroundColor: "#fff",
-    border: "none",
-    borderTopRightRadius: 60,
-    borderTopLeftRadius: 60,
-    paddingTop: 50,
-    paddingBottom: 50,
-    marginTop: 20,
-    height: "50%",
-    width: "100%",
-  },
-  weatherContainer: {
-    alignItems: "center",
-    borderWidth: 0.3,
-    borderRadius: 17,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 10,
-    paddingLeft: 10,
-    marginTop: 10,
-  },
-  daysFlexContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    // padding: 15,
-  },
-  shadowProp: {
-    shadowColor: "#fefefe",
-    shadowOffset: { width: 2, height: 8 },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
-  },
-  nextDaysText: {
-    fontSize: 14,
-    alignSelf: "flex-start",
-    fontWeight: "bold",
-    paddingLeft: 12,
   },
   bodyText: {
     fontSize: 13,
