@@ -19,8 +19,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { books } from "./Books.js";
-import { CartContext } from "./CartContext";
+import { books } from "../Books.js";
+import { CartContext } from "../CartContext.js";
 import { useState, useContext, useCallback, useEffect, useRef } from "react";
 
 export default function Checkout({ navigation }) {

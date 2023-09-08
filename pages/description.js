@@ -23,15 +23,15 @@ export default function Description({ navigation }) {
         <View style={styles.container}>
           <View style={styles.welcome}>
             <TouchableOpacity onPress={()=> navigation.navigate("Home")}>
-              <Image source={require("./images/back.png")} />
+              <Image source={require("../images/back.png")} />
             </TouchableOpacity>
-            <Image source={require("./images/heart-outline.png")} />
+            <Image source={require("../images/heart-outline.png")} />
           </View>
           <View style={styles.love}>
             <View style={styles.imagecontainer}>
               <Image
                 style={styles.image}
-                source={require("./images/book2.png")}
+                source={require("../images/book2.png")}
               />
             </View>
 
@@ -73,14 +73,14 @@ export default function Description({ navigation }) {
                 onPress={() => navigation.navigate("Description")}
               >
                 <View style={styles.book}>
-                  <Image source={require("./images/book1.png")} />
+                  <Image source={require("../images/book1.png")} />
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => navigation.navigate("Description")}
               >
                 <View style={styles.book}>
-                  <Image source={require("./images/book2.png")} />
+                  <Image source={require("../images/book2.png")} />
                 </View>
               </TouchableOpacity>
             </View>

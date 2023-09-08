@@ -17,8 +17,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { books } from "./Books.js";
-import { CartContext } from "./CartContext";
+import { books } from "../Books.js";
+import { CartContext } from "../CartContext.js";
 import { useState, useContext, useCallback, useEffect } from "react";
 
 export default function Favourites({ navigation }) {
@@ -153,7 +153,7 @@ export default function Favourites({ navigation }) {
                         >
                           <Image
                             style={{ width: 80, resizeMode: "contain" }}
-                            source={require("./images/ratings.png")}
+                            source={require("../images/ratings.png")}
                           />
                         </View>
                         <View

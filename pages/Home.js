@@ -18,16 +18,17 @@ import { AntDesign } from "@expo/vector-icons";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { CartContext } from "./CartContext";
-import { books } from "./Books.js";
+import { CartContext } from "../CartContext";
+import { AuthContext } from "../authContext";
+import { books } from "../Books.js";
 import Toast from "react-native-root-toast";
 import { ToastContainer } from "react-native-toast-message";
 import { useState, useContext, useCallback, useEffect } from "react";
+import { auth } from "../firebase";
 
 export default function Home({ navigation }) {
-
   // using usecontext
-
+// const [username, setUsername] = useState("");
   const {
     cartItems,
     setcartItems,
@@ -39,16 +40,18 @@ export default function Home({ navigation }) {
     setfavItems,
     addtoFav,
   } = useContext(CartContext);
+
+  const { username, setUsername, handleLogin } = useContext(AuthContext);
   return (
     <>
       <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
         <View style={styles.container}>
           <View style={styles.welcome}>
             <View>
-              <Text style={styles.HeaderText}>Hello Lolia</Text>
+              <Text style={styles.HeaderText}>Hello {username}</Text>
               <Text style={styles.smallText}>Welcome back</Text>
             </View>
-            <Image source={require("./images/notification.png")} />
+            <Image source={require("../images/notification.png")} />
           </View>
           <View style={[styles.welcome]}>
             <Text style={{ fontWeight: 600 }}> Recommended</Text>
@@ -56,7 +59,7 @@ export default function Home({ navigation }) {
               <Text style={{ color: "#411465", fontSize: 12, fontWeight: 500 }}>
                 All genres
               </Text>
-              <Image source={require("./images/drop-down.png")} />
+              <Image source={require("../images/drop-down.png")} />
             </View>
           </View>
           <ScrollView>
@@ -84,7 +87,7 @@ export default function Home({ navigation }) {
                     >
                       <Image
                         style={{ width: 80, resizeMode: "contain" }}
-                        source={require("./images/ratings.png")}
+                        source={require("../images/ratings.png")}
                       />
                       {/* {liked === book.id ? (
                         <TouchableOpacity
@@ -153,7 +156,9 @@ export default function Home({ navigation }) {
                         >
                           <TouchableOpacity
                             style={styles.button}
-                            onPress={() => {addtoCart(book), showToast(book)}}
+                            onPress={() => {
+                              addtoCart(book), showToast(book);
+                            }}
                           >
                             <Text
                               style={{

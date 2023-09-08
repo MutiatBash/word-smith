@@ -14,24 +14,71 @@ import {
 } from "react-native";
 import CheckBox from "expo-checkbox";
 import { LinearGradient } from "expo-linear-gradient";
+import { AuthContext } from "../authContext.js";
+import { FIREBASE_AUTH } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState, useContext, useCallback, useEffect } from "react";
+import { auth } from "../firebase";
 
 export default function Login({ navigation }) {
   const [isChecked, setChecked] = useState(false);
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { loading, setLoading } = useContext(AuthContext);
+
+  const auth = FIREBASE_AUTH;
+  const handleLogin = async () => {
+    setLoading(true);
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log("registered:", email);
+      alert("You are logged in");
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+        // navigation.navigate("Home");
+        console.log(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
     <>
       <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
         <View style={styles.container}>
-          <Image style={styles.logo} source={require("./images/logo.png")} />
+          <Image style={styles.logo} source={require("../images/logo.png")} />
           <Text style={styles.HeaderText}>WELCOME BACK TO WORDSMITH</Text>
           <View style={styles.form}>
             <View>
               <Text style={{ paddingVertical: 2 }}>Email Address</Text>
-              <TextInput inputMode="email" style={styles.input} />
+              <TextInput
+                inputMode="email"
+                style={styles.input}
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
             </View>
             <View>
               <Text style={{ paddingVertical: 2 }}>Password</Text>
-              <TextInput style={styles.input} secureTextEntry={true} />
+              <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
             </View>
             <View style={styles.forgotcontainer}>
               <View style={{ flexDirection: "row", gap: 10 }}>
@@ -58,18 +105,21 @@ export default function Login({ navigation }) {
               <Button
                 title="Login"
                 color="#fff"
-                onPress={() => navigation.navigate("Home")}
+                onPress={() => {
+                  handleLogin;
+                  navigation.navigate("Home");
+                }}
               />
             </TouchableOpacity>
           </LinearGradient>
           <View style={styles.Signupcontainer}>
             <Text> Or Continue With</Text>
             <TouchableOpacity>
-              <Image source={require("./images/google.png")} />
+              <Image source={require("../images/google.png")} />
             </TouchableOpacity>
             <View style={styles.forgotcontainer}>
               <Text>New to Wordsmith?</Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
                 <Text style={styles.SignupText}>Sign Up</Text>
               </TouchableOpacity>
             </View>

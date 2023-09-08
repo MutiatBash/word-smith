@@ -23,7 +23,7 @@ export default function Review({ navigation }) {
             <TouchableOpacity
               onPress={() => navigation.navigate("Description")}
             >
-              <Image source={require("./images/back.png")} />
+              <Image source={require("../images/back.png")} />
             </TouchableOpacity>
             <View>
               <Text style={styles.HeaderText}>Reviews</Text>
@@ -34,7 +34,7 @@ export default function Review({ navigation }) {
             <View style={styles.reviewInput}>
               <Image
                 style={{ width: 40, height: 40, resizeMode: "contain" }}
-                source={require("./images/user.png")}
+                source={require("../images/user.png")}
               />
               <TextInput placeholder="Leave a review" />
             </View>
@@ -50,7 +50,7 @@ export default function Review({ navigation }) {
                   <View>
                     <Image
                       style={styles.image}
-                      source={require("./images/ene.png")}
+                      source={require("../images/ene.png")}
                     />
                   </View>
 
@@ -65,7 +65,7 @@ export default function Review({ navigation }) {
                   >
                     4.5
                   </Text>
-                  <Image source={require("./images/star.png")} />
+                  <Image source={require("../images/star.png")} />
                 </View>
               </View>
               <Text style={{ fontSize: 13 }}>
@@ -89,7 +89,7 @@ export default function Review({ navigation }) {
                   <View>
                     <Image
                       style={styles.image}
-                      source={require("./images/joe.png")}
+                      source={require("../images/joe.png")}
                     />
                   </View>
                   <View>
@@ -103,7 +103,7 @@ export default function Review({ navigation }) {
                   >
                     4.5
                   </Text>
-                  <Image source={require("./images/star.png")} />
+                  <Image source={require("../images/star.png")} />
                 </View>
               </View>
               <Text style={{ fontSize: 13, padding: 0 }}>
@@ -124,7 +124,7 @@ export default function Review({ navigation }) {
                   <View>
                     <Image
                       style={styles.image}
-                      source={require("./images/jane.png")}
+                      source={require("../images/jane.png")}
                     />
                   </View>
                   <View>
@@ -138,7 +138,7 @@ export default function Review({ navigation }) {
                   >
                     4.5
                   </Text>
-                  <Image source={require("./images/star.png")} />
+                  <Image source={require("../images/star.png")} />
                 </View>
               </View>
               <Text style={{ fontSize: 13 }}>
